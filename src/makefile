@@ -1,5 +1,10 @@
 CC	= gcc
 CFLAGS	= -O4 -I\src\cmn\inc
+MARIKO  = AB
+GCC_OPTION=GTFAMLJKOEW+
+GCC_LIB=.l
+HAS=-u -z
+HLK=-l floatfnc.l -l iocslib.l -l doslib.l -l gnulib.l -l clib.l
 AS	= $(GCC_AS)
 LK	= $(GCC_LINK)
 LIBS	= 
@@ -11,7 +16,7 @@ DEPEND  = make.d
 all:	$(PROG)
 
 $(PROG):	$(OBJS)
-	$(CC) -o $(PROG) $(OBJS) $(LIBS)
+	$(LK) -o $(PROG) $(OBJS) $(LIBS)
 
 clean:
 	echo dummy: > $(DEPEND)

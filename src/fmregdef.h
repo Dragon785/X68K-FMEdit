@@ -1,9 +1,6 @@
 #if (!defined(__FMREGDEF_H__))
 #define __FMREGDEF_H__
 
-#pragma pack(push)
-#pragma pack(1)
-
 typedef struct
 {
 	unsigned char attackRate; /* AR 0-31 */
@@ -17,7 +14,7 @@ typedef struct
 	unsigned char detune1; /* Detune 1 0-7 */
 	unsigned char detune2; /* Detune 2 0-3 */
 	unsigned char amsEnable; /* Amplitude Modulation Enable */
-	unsigned char dummy; /* pudding */
+	unsigned char dummy; /* padding */
 } opData;
 
 typedef struct
@@ -33,7 +30,7 @@ typedef struct
 	unsigned char ams; /* Amplitude modulation sense 0 to 7 */
 	unsigned char pan; /* pan 0-3 0:disable */
 	unsigned char opMask; /* Operator Mask */
-	unsigned char dummy; /* pudding */
+	unsigned char dummy; /* padding */
 	opData opData[4];
 } toneData;
 
@@ -166,7 +163,5 @@ typedef struct
 	unsigned char oct:3; /* オクターブ */
 	unsigned char note:4; /* note 半音ずれているのに注意 */
 } playParam2; /* 0x28+ch */
-
-#pragma pack(pop)
 
 #endif

@@ -5,6 +5,7 @@
 #include "fmregdef.h"
 
 #define TONENAMEMAX (64) // 音色名最大バイト
+
 // 名前つき音色データ
 typedef struct
 {

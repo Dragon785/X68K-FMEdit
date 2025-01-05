@@ -1,5 +1,5 @@
 CC	= gcc
-CFLAGS	= -O4 -I\src\cmn\inc
+CFLAGS	= -O4
 MARIKO  = AB
 GCC_OPTION=GTFAMLJKOEW+
 GCC_LIB=.l

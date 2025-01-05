@@ -235,6 +235,9 @@ static void updateToneChangeKey(void)
 		if ((newTone>0)&&(newTone<=TONEDATAMAX))
 		{
 			currentToneIndex=newTone-1;
+
+			dispAllNoteOff();
+			stopAllNotes();
 			setTone();
 		}
 	}
@@ -242,6 +245,8 @@ static void updateToneChangeKey(void)
 	{
 		if (currentToneIndex<TONEDATAMAX-1)
 		{
+			dispAllNoteOff();
+			stopAllNotes();
 			currentToneIndex++;
 			setTone();
 		}
@@ -250,6 +255,8 @@ static void updateToneChangeKey(void)
 	{
 		if (currentToneIndex>0)
 		{
+			dispAllNoteOff();
+			stopAllNotes();
 			currentToneIndex--;
 			setTone();
 		}

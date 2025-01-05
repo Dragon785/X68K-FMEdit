@@ -35,6 +35,7 @@ extern void refreshAllScreen(void);
 /* 表示エリアに余裕があれば・・スプライト使う？ */
 extern void dispNoteOn(const int note);
 extern void dispNoteOff(const int note);
+extern void dispAllNoteOff(void);
 
 /* カーソル位置指示 表示パラメータ単位(11*5) */
 extern void setCursor(const int x,const int y);

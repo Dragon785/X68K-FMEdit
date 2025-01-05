@@ -573,6 +573,16 @@ void dispNoteOff(const int note)
 	GPALET(note+1,normPalet[note+1]);
 }
 
+void dispAllNoteOff()
+{
+	int note;
+
+	for (note=0;note<12;++note)
+	{
+		GPALET(note+1,normPalet[note+1]);
+	}
+}
+
 void dispPlayOctave(const int oct)
 {
 	dispOct=oct;

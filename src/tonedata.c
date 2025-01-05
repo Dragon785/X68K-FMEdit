@@ -9,13 +9,18 @@ toneDataWithName allToneData[TONEDATAMAX];
 static void readAllDataSub(const char* filename)
 {
 	int i;
+	char buf[128];
+	
 	FILE* f=fopen(filename,"rb");
 	
 	for (i=0;i<TONEDATAMAX;++i)
 	{
+		sprintf(buf,"一括ロード中 %d/%d",i+1,TONEDATAMAX);
+		showPrompt(buf);
 		readToneData(f,&(allToneData[i]));
 	}
 	fclose(f);
+	hidePrompt();
 }
 
 void initToneData(const char* defFile)
@@ -29,6 +34,8 @@ void initToneData(const char* defFile)
 		// 仮で名前だけつけて全部0にする
 		int i;
 
+		showPrompt("音色初期化中...");
+		
 		for (i=0;i<TONEDATAMAX;++i)
 		{
 			int op;
@@ -48,6 +55,7 @@ void initToneData(const char* defFile)
 				p->tone.opData[op].freqMul=1;
 			}
 		}
+		hidePrompt();
 	}
 }
 

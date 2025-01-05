@@ -30,6 +30,9 @@ enum KeyType
 	KEY_OPMASK_2,
 	KEY_OPMASK_3,
 	KEY_OPMASK_4,
+	/* ユーティリティ関連 */
+	KEY_COPYTOBUF, // ワークバッファへコピー
+	KEY_PASTETOCURRENT, // ワークバッファから貼り付け
 	/* 演奏関係 */
 	KEY_OCT_DOWN,
 	KEY_OCT_UP,

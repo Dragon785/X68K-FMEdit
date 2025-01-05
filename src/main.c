@@ -16,6 +16,7 @@
 
 static int currentToneIndex=0;
 static toneData* currentTone=&(allToneData[0].tone);
+static toneDataWithName copyBuf={0};
 
 static void setTone()
 {
@@ -267,8 +268,9 @@ static void updateToneChangeKey(void)
 	}
 }
 
-static void updateOpMaskKey(void)
+static void updateUtilKey(void)
 {
+	// Operator Mask
 	int op;
 	int dirty=0;
 	
@@ -284,6 +286,25 @@ static void updateOpMaskKey(void)
 	{
 		getDispToneData(currentTone);
 		setTone();
+	}
+
+	// copy&paste
+	if (keyTrigOn[KEY_COPYTOBUF])
+	{
+		char c=inputChar("現在の音色をバッファにコピーします(y/other)");
+		if ((c=='y')||(c=='Y'))
+		{
+			memcpy(&copyBuf,&(allToneData[currentToneIndex]),sizeof(toneDataWithName));
+		}
+	}
+	if (keyTrigOn[KEY_PASTETOCURRENT])
+	{
+		char c=inputChar("バッファから現在の音色にコピーします(y/other)");
+		if ((c=='y')||(c=='Y'))
+		{
+			memcpy(&(allToneData[currentToneIndex]),&copyBuf,sizeof(toneDataWithName));
+			setTone();
+		}
 	}
 }
 
@@ -335,7 +356,7 @@ int main(void)
 		updateKeyBuf();
 		updateCursorKey();
 		updateToneChangeKey();
-		updateOpMaskKey();
+		updateUtilKey();
 		updateValueKey();
 		updateFileKey();
 		updatePlayKB();

@@ -43,6 +43,10 @@ static const keySensElem scanTable[]={
 	{0,3,KEY_OPMASK_2}, // 2
 	{0,4,KEY_OPMASK_3}, // 3
 	{0,5,KEY_OPMASK_4}, // 4
+
+	{3,1,KEY_COPYTOBUF}, // o
+	{3,2,KEY_PASTETOCURRENT}, // p
+	/* ‚»‚Ì‘¼ */
 	
 	/* ‰‰‘tŠÖŒW */
 	{5,2,KEY_OCT_DOWN}, /* Z */

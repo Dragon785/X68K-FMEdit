@@ -213,7 +213,9 @@ static void dispHelp(void)
 	printf("Cursor:move cursor");
 	B_LOCATE(dispHelpX,dispHelpY+2);
 	printf("value: q:-10 w:-1 e:+1 r:+10");
-
+	B_LOCATE(dispHelpX,dispHelpY+3);
+	printf("O:copy to buffer P:copy from buffer");
+	
 	// ‰‰‘t•”•ªƒwƒ‹ƒv
 	B_LOCATE(dispKbHelpX,dispKbHelpY);
 	printf("         F G   J K l");

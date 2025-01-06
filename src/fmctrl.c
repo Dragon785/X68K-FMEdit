@@ -26,7 +26,8 @@ void toneDataToOpmParam(opmParam* dst, const toneData* src)
 	dst->opmp3.lfowf = src->lfoWaveform;
 	
 	/* ノイズ周りは使わない(全体で１つのみ) */
-
+	/* sync LFOは使わない */
+	
 	/* 各チャンネルパラメータ */
 	for (ch = 0; ch < 8; ++ch)
 	{
@@ -35,6 +36,10 @@ void toneDataToOpmParam(opmParam* dst, const toneData* src)
 		dst->ch[ch].chp1.algorithm = src->algorithm;
 		dst->ch[ch].chp1.feedbacklevel = src->fbLevel;
 		dst->ch[ch].chp1.pan = src->pan;
+
+		dst->ch[ch].chp2.pms=src->pms;
+		dst->ch[ch].chp2.ams=src->ams;
+		
 		dst->ch[ch].opMask=src->opMask;
 		
 		/* 各オペレータデータ */

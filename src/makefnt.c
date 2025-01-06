@@ -27,7 +27,7 @@ static void makeFontSub(const fontPicData* p,unsigned char src[][32])
 		{
 			DEFCHR(8,code,pSrc);
 			
-			pSrc++;code++;
+			pSrc+=32;code++;
 		}
 	}
 }

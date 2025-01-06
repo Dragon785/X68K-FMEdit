@@ -11,7 +11,6 @@
 #include "disp.h"
 #include "diskio.h"
 #include "fexport.h"
-#include "makefnt.h"
 
 // #define DISABLE_VSYNC
 
@@ -347,7 +346,6 @@ int main(void)
 	BREAKCK(2);// Ignore All BreakCheck
 	
 	/* èâä˙âª */
-	generateFont();
 	initKeyBuf();
 	initDisp(currentOct);
 #if (!defined(DISABLE_VSYNC))

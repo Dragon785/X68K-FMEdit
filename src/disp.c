@@ -9,6 +9,7 @@
 #include "fmctrl.h"
 
 #include "kbptn.h"
+#include "makefnt.h"
 
 static int oldCrtMode=0; // ŽÀs‘O‚ÌCRTMode
 static int oldTextMode=0;
@@ -114,18 +115,60 @@ const struct toneDispTable toneIndexTbl[5][11]=
 
 static int toneDataDirty[DIRTY_NUM];
 
-// ƒAƒ‹ƒSƒŠƒYƒ€•\‹L
-static const char* algStr[8]={
-	"1-2-3-4     ",
-	"(1-2)-3-4   ",
-	"(1)(2-3)-4  ",
-	"(1-2)(3)-4  ",
-	"{1-2}{3-4}  ",
-	"1-(234)     ",
-	"{1-2}{3}{4} ",
-	"{1}{2}{3}{4}"
-	};
-
+/* ƒAƒ‹ƒSƒŠƒYƒ€•\‹LiŠOŽš) */
+/* ˆê“xfmedit‚ðŽÀs‚·‚é‚ÆƒtƒHƒ“ƒg‚ª‘‚«•Ï‚í‚é‚Ì‚ÅŒ©‚¦‚é‚æ‚¤‚É‚È‚é */
+static const char* algStr[8][3]=
+{
+	{
+		/* alg 0 */
+		"ëŸë ë¡ë¢",
+		"        ",
+		"        ",
+	},
+	{
+		/* alg 1 */
+		"ë£ë¤ë¥ë¦",
+		"ë§ë¨ë©ëª",
+		"        "
+	},
+	{
+		/* alg 2 */
+		"ë«ë¬ë­ë®",
+		"ë¯ë°ë±ë²",
+		"        "
+	},
+	{
+		/* alg 3 */
+		"ë³ë´ëµë¶",
+		"ë·ë¸ë¹ëº",
+		"        "
+	},
+	{
+		/* alg 4 */
+		"  ë»ë¼  ",
+		"  ë½ë¾  ",
+		"        "
+	},
+	{
+		/* alg 5 */
+		"  ë¿ëÀ  ",
+		"  ëÁëÂ  ",
+		"  ëÃëÄ  "
+	},
+	{
+		/* alg 6 */
+		"  ëÅëÆ  ",
+		"  ëÇëÈ  ",
+		"  ëÉëÊ  "
+	},
+	{
+		/* alg 7 */
+		"    ëË  ",
+		"    ëÌ  ",
+		"    ëÍ  "
+	}
+};
+	
 const char panChar[4]={'*','L','R','C'};
 
 // ƒL[ƒ{[ƒhƒOƒ‰ƒtƒBƒbƒN•\Ž¦ƒoƒbƒtƒ@(84*42)
@@ -167,7 +210,7 @@ static void createKbGraph(void)
 // •\Ž¦ˆÊ’u
 const int dispToneNameY=2;
 const int dispCommonY=4;
-const int dispOpStartY=8;
+const int dispOpStartY=9;
 const int dispOpHeight=4;
 const int dispPromptY=0;
 const int dispHelpX=45;
@@ -287,10 +330,15 @@ static void dispToneName(void)
 // ƒAƒ‹ƒSƒŠƒYƒ€ƒwƒ‹ƒv•\Ž¦i•\Ž¦—Ê‚ª‘½‚¢‚Ì‚ÅØ‚è•ª‚¯j
 static void dispAlgorithm()
 {
+	int i;
+	
 	/* ƒAƒ‹ƒSƒŠƒYƒ€ƒwƒ‹ƒv•\Ž¦ */
-	B_LOCATE(7,dispCommonY+2);
 	B_COLOR(normalParamCol);
-	printf("%s",algStr[dispToneData.algorithm]);
+	for (i=0;i<3;++i)
+	{
+		B_LOCATE(7,dispCommonY+2+i);
+		printf("%s",algStr[dispToneData.algorithm][i]);
+	}
 }
 
 /* ‹¤’Êƒf[ƒ^•\Ž¦ */
@@ -399,6 +447,9 @@ void initDisp(const int oct)
 			GPALET(i,normPalet[i]);
 		}
 	}
+
+	generateFont();
+	
 	strcpy(toneName,"init");
 	dispPlayOctave(oct);
 	dispHeaders();

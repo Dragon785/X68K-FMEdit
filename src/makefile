@@ -8,7 +8,7 @@ HLK=-l floatfnc.l -l iocslib.l -l doslib.l -l gnulib.l -l clib.l
 AS	= $(GCC_AS)
 LK	= $(GCC_LINK)
 LIBS	= 
-OBJS	= fmctrl.o main.o keyutil.o disp.o tonedata.o diskio.o fexport.o
+OBJS	= fmctrl.o main.o keyutil.o disp.o tonedata.o diskio.o fexport.o makefnt.o
 PROG	= fmedit.x
 DEPEND  = make.d
 

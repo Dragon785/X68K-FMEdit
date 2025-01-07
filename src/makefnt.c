@@ -15,17 +15,17 @@ const fontPicData algoFontData[8]=
 	{0xebcb,1,3}  // Algorithm 7
 };
 
-static void makeFontSub(const fontPicData* p,unsigned char src[][32])
+static void makeFontSub(const fontPicData* p,const unsigned char src[][32])
 {
 	int x,y;
-	unsigned char* pSrc=src[0];
+	const unsigned char* pSrc=src[0];
 	unsigned int code=p->beginCode;
 	
 	for (y=0;y<(p->y);++y)
 	{
 		for (x=0;x<(p->x);++x)
 		{
-			DEFCHR(8,code,pSrc);
+			DEFCHR(8,code,(UBYTE*)pSrc);
 			
 			pSrc+=32;code++;
 		}

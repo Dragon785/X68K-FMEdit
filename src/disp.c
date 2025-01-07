@@ -12,9 +12,11 @@
 #include "makefnt.h"
 
 static int oldCrtMode=0; // 実行前のCRTMode
-static int oldTextMode=0;
-static int oldGraphMode=0;
-static toneData dispToneData; // 表示用トーンデータ
+static int oldTextMode=0; // 実行前のテキスト使用モード
+static int oldGraphMode=0; // 実行前のグラフィック使用モード
+static int oldFuncKeyMode=0; // 実行前のファンクションキーモード
+static int oldScrollRange=0;
+static toneData dispToneData={0}; // 表示用トーンデータ
 static int dispOct=3; //表示用オクターブ
 static int curX=0,curY=0; // カーソル表示位置
 
@@ -435,6 +437,8 @@ const unsigned short pushPalet[16]=
 void initDisp(const int oct)
 {
 	B_CUROFF();
+	oldScrollRange=B_CONSOL(0,0,-1,-1);
+	oldFuncKeyMode=C_FNKMOD(-1);
 	oldCrtMode=CRTMOD(-1);
 	CRTMOD(16); // 768*512に切り替える
 	oldTextMode=TGUSEMD(1,2);
@@ -525,9 +529,11 @@ void updateDisp(void)
 
 void finishDisp(void)
 {
-	CRTMOD(oldCrtMode);
 	TGUSEMD(0,oldGraphMode);
 	TGUSEMD(1,oldTextMode);
+	CRTMOD(oldCrtMode);
+	C_FNKMOD(oldFuncKeyMode);
+	B_CONSOL(0,0,oldScrollRange>>16,oldScrollRange&(0xffff));
 	B_CURON();
 }
 

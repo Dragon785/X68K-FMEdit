@@ -1,4 +1,4 @@
-# X68K-FMEdit
+# [X68K-FMEdit](https://github.com/Dragon785/X68K-FMEdit)
 X68000用のFM音源音色エディタ
 
 ## はじめに
